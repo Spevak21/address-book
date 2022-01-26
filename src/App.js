@@ -25,6 +25,7 @@ function App() {
       if(edit === '') {
         addContact(contact, setContacts);                                               // adding new contact to DB
       }else if (edit !== '') {
+        console.log(contact)
         updateContact(contact, edit, setContacts);                                      // updating existing contact in DB
         setFiltered(filtered.map(el => el.ID === edit ? {ID: edit, ...contact} : el));  // Updates filtered list if EDIT is being done while SEARCH is active
       }

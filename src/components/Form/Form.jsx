@@ -22,14 +22,26 @@ const Form = ({setContact, edit, setEdit}) => {
             <div className="btn-container">
                 <button onClick={(e) => {
                     e.preventDefault();
-                    if(name !== '' && address !== '') { // Creating new object from input values and seting state variable with it
-                        let newContact = {
-                            name: name.trim(),
-                            address: address.trim(),
-                            picture: image ? image : undefined // picture is not required if not supplied default placeholder image will be set  
-                        }
+                    if(name === '' || address === '') return    // Name and Address are required
 
+                    let newContact = {                          // Creating new object from input values
+                        name: name.trim(),
+                        address: address.trim()
+                    }
+
+                    if(image === '') {
+                        newContact.picture = undefined          // if picture is not supplied default placeholder image will be set from undefined value
                         setContact(newContact);
+                    }else if(image !== '') {
+                        let reader = new FileReader();          // if picture is provided it will be converted from File to base64 to be stored in DB
+                        reader.readAsDataURL(image);
+                        reader.onload = function () {        
+                            newContact.picture = reader.result;
+                            setContact(newContact);
+                        };
+                        reader.onerror = function (error) {
+                            console.log('Error: ', error);
+                        };
                     }
                     reset();
                 }}>{edit ? 'Save changes' : 'Add contact'}</button>

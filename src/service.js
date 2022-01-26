@@ -24,39 +24,18 @@ export const getAllContacts = (callback) => {
 
 // Adding new contact
 export const addContact = (contact, callback) => {
-    if(contact.picture !== undefined) { // Converting image File to base64 for image to be stored in DB as string
-        let reader = new FileReader();
-        reader.readAsDataURL(contact.picture);
-        reader.onload = function () {        
-            db.transaction(function(tx) {
-                tx.executeSql('INSERT INTO CONTACTS (name, address, picture) VALUES (?, ?, ?)', [contact.name, contact.address, reader.result]);
-                getAllContacts(callback);
-            });
-        };
-            reader.onerror = function (error) {
-            console.log('Error: ', error);
-        };
-    }else {                             // If image is not provided proceed with undefined in which case placeholder will be set on contact
-        db.transaction(function(tx) {
-            tx.executeSql('INSERT INTO CONTACTS (name, address, picture) VALUES (?, ?, ?)', [contact.name, contact.address, contact.picture]);
-            getAllContacts(callback);
-        });
-    }
+    db.transaction(function(tx) {
+        tx.executeSql('INSERT INTO CONTACTS (name, address, picture) VALUES (?, ?, ?)', [contact.name, contact.address, contact.picture]);
+        getAllContacts(callback);
+    });
 }
 
 // Updating existing contact
 export const updateContact = (contact, id, callback) => {
-    let reader = new FileReader();
-    reader.readAsDataURL(contact.picture);
-    reader.onload = function () {        
-        db.transaction(function(tx) {
-            tx.executeSql('UPDATE CONTACTS SET name = ?, address = ?, picture = ? WHERE ID = ?', [contact.name, contact.address, reader.result, id]);
-            getAllContacts(callback);
-        });
-    };
-        reader.onerror = function (error) {
-        console.log('Error: ', error);
-    };
+    db.transaction(function(tx) {
+        tx.executeSql('UPDATE CONTACTS SET name = ?, address = ?, picture = ? WHERE ID = ?', [contact.name, contact.address, contact.picture, id]);
+        getAllContacts(callback);
+    });
 }
 
 // Deleting contact
@@ -67,7 +46,7 @@ export const deleteById = (id, callback) => {
     });
 }
 
-// ------------------------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------------------
 
 // Converting to SCV format
 const objectsToCSV = (contacts) => {  
