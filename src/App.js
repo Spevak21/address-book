@@ -23,7 +23,7 @@ function App() {
   useEffect(() => {
     if(contact !== null) {
       if(edit === '') {
-        addContact(contact, setContacts);                                               // adding new contact to DB 
+        addContact(contact, setContacts);                                               // adding new contact to DB
       }else if (edit !== '') {
         updateContact(contact, edit, setContacts);                                      // updating existing contact in DB
         setFiltered(filtered.map(el => el.ID === edit ? {ID: edit, ...contact} : el));  // Updates filtered list if EDIT is being done while SEARCH is active
@@ -38,7 +38,7 @@ function App() {
       <h1>{edit ? 'Edit selected contact' : 'Add new contact'}</h1>
       <Form setContact = {setContact} edit = {edit} setEdit = {setEdit}/>
       <Search contacts = {contacts} setFiltered = {setFiltered} setSearching = {setSearching}/>
-      <List contacts = {searching ? filtered : contacts} setContacts = {setContacts} edit = {edit} setEdit = {setEdit}/>
+      <List contacts = {searching ? filtered : contacts} setContacts = {setContacts} edit = {edit} setEdit = {setEdit} setFiltered = {setFiltered}/>
     </div>
   );
 }
