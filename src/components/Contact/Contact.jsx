@@ -8,7 +8,7 @@ const Contact = ({contact, setContacts, edit, setEdit}) => {
         <StyledContact edit = {edit}>   
             <div className="info">
                 <div className="img-container">
-                    <img src={contact.picture !== 'undefined' ? contact.picture : process.env.PUBLIC_URL + 'placeholder-image.jpg'} alt={contact.picture !== 'undefined' ? contact.name + ' profile image' : 'placeholder image'} />
+                    <img src={contact.picture !== 'undefined' ? contact.picture : process.env.PUBLIC_URL + './placeholder-image.jpg'} alt={contact.picture !== 'undefined' ? contact.name + ' profile image' : 'placeholder image'} />
                 </div>
                 <div className="credentials">
                     <p><span>Name: </span>{contact.name}</p>
