@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/address-book/static/css/main.c5e94154.css",
-    "main.js": "/address-book/static/js/main.36ada2a4.js",
+    "main.js": "/address-book/static/js/main.4f409f63.js",
     "index.html": "/address-book/index.html",
     "main.c5e94154.css.map": "/address-book/static/css/main.c5e94154.css.map",
-    "main.36ada2a4.js.map": "/address-book/static/js/main.36ada2a4.js.map"
+    "main.4f409f63.js.map": "/address-book/static/js/main.4f409f63.js.map"
   },
   "entrypoints": [
     "static/css/main.c5e94154.css",
-    "static/js/main.36ada2a4.js"
+    "static/js/main.4f409f63.js"
   ]
 }
